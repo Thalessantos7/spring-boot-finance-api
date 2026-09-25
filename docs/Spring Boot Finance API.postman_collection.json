@@ -1,0 +1,143 @@
+{
+  "info": {
+    "_postman_id": "4b5371b9-2466-466a-b80c-9368711b4e09",
+    "name": "Spring Boot Finance API",
+    "description": "Pedidos HTTP para a API de Gestão de Finanças Pessoais.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57307386"
+  },
+  "item": [
+    {
+      "name": "Criar Transação (Receita)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"descricao\": \"Bolsa de Estágio\",\r\n    \"valor\": 1200,\r\n    \"data\": \"2026-09-24\",\r\n    \"tipo\": \"RECEITA\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transacoes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacoes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Transações",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/transacoes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacoes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar Transação por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/transacoes/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacoes",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Apagar Transação por ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/transacoes/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacoes",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Transação (Despesa)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"descricao\": \"Compra de teclado Mecânico\",\r\n    \"valor\": 350,\r\n    \"data\": \"2026-09-25\",\r\n    \"tipo\": \"DESPESA\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transacoes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacoes"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
