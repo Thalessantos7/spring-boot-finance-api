@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: gestor-financas
+  datasource:
+    url: jdbc:postgresql://localhost:5432/financas_db
+    username: postgres
+    password: 722453
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
