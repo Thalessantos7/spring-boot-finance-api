@@ -1,6 +1,7 @@
 package com.thales.gestor_financas.controller;
 
-import com.thales.gestor_financas.model.Transacao;
+import com.thales.gestor_financas.dto.ResumoFinanceiroDTO;
+import com.thales.gestor_financas.entity.Transacao;
 import com.thales.gestor_financas.service.TransacaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -41,5 +42,12 @@ public class TransacaoController {
         service.deletar(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/resumo")
+    public ResponseEntity<ResumoFinanceiroDTO> obterResumo() {
+        ResumoFinanceiroDTO resumo = service.obterResumo();
+
+        return ResponseEntity.ok(resumo);
     }
 }

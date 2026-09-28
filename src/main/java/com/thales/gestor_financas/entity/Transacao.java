@@ -1,9 +1,10 @@
-package com.thales.gestor_financas.model;
+package com.thales.gestor_financas.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import java.math.BigDecimal;
 
@@ -26,4 +27,12 @@ public class Transacao {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoTransacao tipo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 }
