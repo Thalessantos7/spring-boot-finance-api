@@ -6,6 +6,9 @@ Uma API RESTful desenvolvida em Java com Spring Boot para gestão de finanças p
 
 * **Java 21**
 * **Spring Boot** (Web, Data JPA, Validation)
+* **Spring Security** (Autenticação Stateless e filtros de segurança)
+* **JWT (Auth0)** (Geração e validação de tokens de acesso)
+* **BCrypt** (Hashing seguro de senhas)
 * **PostgreSQL** (Banco de dados relacional)
 * **Lombok** (Redução de código boilerplate)
 * **Maven** (Gerenciamento de dependências)
@@ -17,38 +20,34 @@ A aplicação foi desenvolvida seguindo o padrão de arquitetura em camadas, gar
 
 ```text
 src/main/java/com/thales/gestor_financas
-├── controller/         # Porta de entrada da API (Endpoints REST)
-│   └── TransacaoController.java
+├── controller/         # Portas de entrada da API (Endpoints REST protegidos e públicos)
 ├── service/            # Regras de negócio da aplicação
-│   └── TransacaoService.java
 ├── repository/         # Comunicação e consultas ao banco de dados (Spring Data JPA)
-│   └── TransacaoRepository.java
-└── model/              # Entidades mapeadas para o banco de dados
-    ├── Transacao.java
-    └── TipoTransacao.java (Enum)
+├── entity/             # Entidades mapeadas para o banco de dados
+├── dto/                # Objetos de Transferência de Dados (Request e Response DTOs)
+└── security/           # Configurações de segurança, filtros JWT e serviços de token
 ```
 
 ## ⚙️ Funcionalidades
 
 **Implementadas:**
 
-* [x] Cadastro de nova transação (Receita/Despesa)
-* [x] Listagem de todas as transações
-* [x] Busca de transação por ID
-* [x] Exclusão de transação
+* [x] **Autenticação e Segurança:** Registo de utilizadores, login seguro com geração de Token JWT e rotas protegidas por filtros.
+* [x] **Criptografia:** Segurança de senhas através de `BCryptPasswordEncoder`.
+* [x] **Gestão de Categorias:** Criação e listagem de categorias associadas a utilizadores com validação de dados (`Bean Validation`).
+* [x] **Padrão DTO:** Separação clara entre os dados recebidos nas requisições e as respostas devolvidas pela API (protegendo dados sensíveis).
+* [x] **Gestão de Transações:** Registo de receitas e despesas, listagem, busca por ID e exclusão.
+* [x] **Resumo Financeiro:** Cálculo dinâmico do saldo total (Receitas - Despesas) através do endpoint `/api/transacoes/resumo`.
 
 **Próximos passos (Em desenvolvimento):**
 
-* [ ] Validação de dados de entrada (Bean Validation)
-* [ ] Cálculo de saldo total (Receitas - Despesas)
-* [ ] Autenticação e Segurança (Spring Security + JWT)
 * [ ] Testes Automatizados (JUnit e Mockito)
 
 ## 🛠️ Como rodar o projeto localmente
 
 ### Pré-requisitos
 
-* Java 17 ou superior instalado.
+* Java 21 instalado.
 * PostgreSQL instalado e rodando.
 * Maven instalado.
 
@@ -90,6 +89,12 @@ A API estará disponível em `http://localhost:8080/api/transacoes`.
 | `GET` | `/api/transacoes` | Retorna todas as transações |
 | `GET` | `/api/transacoes/{id}` | Retorna uma transação específica |
 | `DELETE` | `/api/transacoes/{id}` | Deleta uma transação |
+| `GET` | `/api/transacoes/resumo` | Retorna o resumo financeiro (Receitas, Despesas e Saldo) |
+| `POST` | `/api/usuarios/registrar` | Registra um novo usuário |
+| `POST` | `/api/usuarios/login` | Efetua login e devolve o Token JWT |
+| `POST` | `/api/categorias` | Cria uma nova categoria |
+| `GET` | `/api/usuarios/usuario/{id}` | Lista categorias de um usuário |
 
 ---
+
 *Desenvolvido como projeto de portfólio para vagas de estágio em Backend.*

@@ -23,8 +23,8 @@ public class CategoriaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(new CategoriaResponseDTO(novaCategoria));
     }
 
-    @GetMapping("/usuario/{usuarioId}")
-    public ResponseEntity<List<Categoria>> listarPorUsuario(@PathVariable Long usuarioId) {
-        return ResponseEntity.ok(categoriaService.listarPorUsuario(usuarioId));
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<List<Categoria>> listarPorUsuario(@PathVariable Long id) {
+        return ResponseEntity.ok(categoriaService.listarPorUsuario(id));
     }
 }

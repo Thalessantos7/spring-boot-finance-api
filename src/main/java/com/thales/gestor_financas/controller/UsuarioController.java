@@ -20,6 +20,7 @@ public class UsuarioController {
     @PostMapping("/registrar")
     public ResponseEntity<Usuario> registrar(@Valid @RequestBody Usuario usuario) {
         Usuario novoUsuario = usuarioService.registrar(usuario);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
     }
 }
