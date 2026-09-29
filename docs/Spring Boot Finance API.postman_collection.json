@@ -10,11 +10,21 @@
     {
       "name": "Criar Transação (Receita)",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"descricao\": \"Bolsa de Estágio\",\r\n    \"valor\": 1200,\r\n    \"data\": \"2026-09-24\",\r\n    \"tipo\": \"RECEITA\"\r\n}",
+          "raw": "{\r\n    \"descricao\": \"Bolsa de Estágio\",\r\n    \"valor\": 1200,\r\n    \"data\": \"2026-09-24\",\r\n    \"tipo\": \"RECEITA\",\r\n    \"usuario\": { \"id\": 1 },\r\n    \"categoria\": { \"id\": 1 }\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -39,6 +49,9 @@
     {
       "name": "Listar Transações",
       "request": {
+        "auth": {
+          "type": "bearer"
+        },
         "method": "GET",
         "header": [],
         "url": {
@@ -59,6 +72,9 @@
     {
       "name": "Buscar Transação por ID",
       "request": {
+        "auth": {
+          "type": "bearer"
+        },
         "method": "GET",
         "header": [],
         "url": {
@@ -86,6 +102,9 @@
     {
       "name": "Apagar Transação por ID",
       "request": {
+        "auth": {
+          "type": "bearer"
+        },
         "method": "DELETE",
         "header": [],
         "url": {
@@ -117,7 +136,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"descricao\": \"Compra de teclado Mecânico\",\r\n    \"valor\": 350,\r\n    \"data\": \"2026-09-25\",\r\n    \"tipo\": \"DESPESA\"\r\n}",
+          "raw": "{\r\n    \"descricao\": \"Compra de teclado Mecânico\",\r\n    \"valor\": 350,\r\n    \"data\": \"2026-09-25\",\r\n    \"tipo\": \"DESPESA\",\r\n    \"usuario\": { \"id\": 1 },\r\n    \"categoria\": { \"id\": 1 }\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -134,6 +153,160 @@
           "path": [
             "api",
             "transacoes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obter Resumo Financeiro",
+      "request": {
+        "auth": {
+          "type": "bearer"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/transacoes/resumo",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacoes",
+            "resumo"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Registrar Novo Usuário",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nome\": \"Thales\",\r\n    \"email\": \"thales@gmail.com\",\r\n    \"senha\": \"minhasenha123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/usuarios/registrar",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "usuarios",
+            "registrar"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Categoria",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nome\": \"Alimentação\",\r\n    \"usuario\": {\r\n        \"id\": 1\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/categorias",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "categorias"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Listar Categorias por Usuário",
+      "request": {
+        "auth": {
+          "type": "bearer"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/categorias/usuario/:id",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "categorias",
+            "usuario",
+            ":id"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Efetuar Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"thales@gmail.com\",\r\n    \"senha\": \"minhasenha123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/usuarios/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "usuarios",
+            "login"
           ]
         }
       },
