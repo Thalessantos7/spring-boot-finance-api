@@ -1,7 +1,7 @@
 package com.thales.gestor_financas.service;
 
 import com.thales.gestor_financas.dto.ResumoFinanceiroDTO;
-import com.thales.gestor_financas.entity.TipoTransacao;
+import com.thales.gestor_financas.enums.TipoTransacao;
 import com.thales.gestor_financas.entity.Transacao;
 import com.thales.gestor_financas.repository.TransacaoRepository;
 import org.junit.jupiter.api.Test;

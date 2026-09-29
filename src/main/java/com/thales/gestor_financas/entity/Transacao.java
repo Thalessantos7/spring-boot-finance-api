@@ -1,10 +1,10 @@
 package com.thales.gestor_financas.entity;
 
+import com.thales.gestor_financas.enums.TipoTransacao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Fetch;
 
 import java.math.BigDecimal;
 

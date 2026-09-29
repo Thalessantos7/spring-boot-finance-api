@@ -1,6 +1,6 @@
 package com.thales.gestor_financas.repository;
 
-import com.thales.gestor_financas.entity.TipoTransacao;
+import com.thales.gestor_financas.enums.TipoTransacao;
 import com.thales.gestor_financas.entity.Transacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
