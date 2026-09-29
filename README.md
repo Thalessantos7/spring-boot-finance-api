@@ -25,6 +25,7 @@ src/main/java/com/thales/gestor_financas
 ├── repository/         # Comunicação e consultas ao banco de dados (Spring Data JPA)
 ├── entity/             # Entidades mapeadas para o banco de dados
 ├── dto/                # Objetos de Transferência de Dados (Request e Response DTOs)
+├── enums/              # Constantes estritas e seguras da aplicação
 └── security/           # Configurações de segurança, filtros JWT e serviços de token
 ```
 
@@ -38,10 +39,7 @@ src/main/java/com/thales/gestor_financas
 * [x] **Padrão DTO:** Separação clara entre os dados recebidos nas requisições e as respostas devolvidas pela API (protegendo dados sensíveis).
 * [x] **Gestão de Transações:** Registo de receitas e despesas, listagem, busca por ID e exclusão.
 * [x] **Resumo Financeiro:** Cálculo dinâmico do saldo total (Receitas - Despesas) através do endpoint `/api/transacoes/resumo`.
-
-**Próximos passos (Em desenvolvimento):**
-
-* [ ] Testes Automatizados (JUnit e Mockito)
+* [x] **Testes Automatizados:** Cobertura de testes unitários para regras de negócio (camada de Service) utilizando JUnit e Mockito.
 
 ## 🛠️ Como rodar o projeto localmente
 
