@@ -1,5 +1,6 @@
 package com.thales.gestor_financas.controller;
 
+import com.thales.gestor_financas.dto.CategoriaResponseDTO;
 import com.thales.gestor_financas.entity.Categoria;
 import com.thales.gestor_financas.service.CategoriaService;
 import jakarta.validation.Valid;
@@ -17,9 +18,9 @@ public class CategoriaController {
     public final CategoriaService categoriaService;
 
     @PostMapping
-    public ResponseEntity<Categoria> criar(@Valid @RequestBody Categoria categoria) {
+    public ResponseEntity<CategoriaResponseDTO> criar(@Valid @RequestBody Categoria categoria) {
         Categoria novaCategoria = categoriaService.salvar(categoria);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaCategoria);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new CategoriaResponseDTO(novaCategoria));
     }
 
     @GetMapping("/usuario/{usuarioId}")
