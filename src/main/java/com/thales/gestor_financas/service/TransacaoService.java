@@ -4,6 +4,7 @@ import com.thales.gestor_financas.dto.ResumoFinanceiroDTO;
 import com.thales.gestor_financas.enums.TipoTransacao;
 import com.thales.gestor_financas.entity.Transacao;
 import com.thales.gestor_financas.repository.TransacaoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,9 @@ public class TransacaoService {
         return repository.findAll();
     }
 
-    public Optional<Transacao> buscarPorId(Long id) {
-        return repository.findById(id);
+    public Transacao buscarPorId(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Transação não encontrada"));
     }
 
     public void deletar(Long id) {

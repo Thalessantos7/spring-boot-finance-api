@@ -32,9 +32,9 @@ public class TransacaoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Transacao> buscarPorId(@PathVariable Long id) {
-        return service.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Transacao transacao = service.buscarPorId(id);
+
+        return ResponseEntity.ok(transacao);
     }
 
     @DeleteMapping("/{id}")
