@@ -4,6 +4,7 @@ import com.thales.gestor_financas.dto.ResumoFinanceiroDTO;
 import com.thales.gestor_financas.enums.TipoTransacao;
 import com.thales.gestor_financas.entity.Transacao;
 import com.thales.gestor_financas.repository.TransacaoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,9 +12,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -63,5 +66,35 @@ public class TransacaoServiceTest {
         assertEquals(new BigDecimal("800.00"), resultado.getValor());
 
         verify(repository, times(1)).save(transacaoNova);
+    }
+
+    @Test
+    void deveBuscarTransacaoPorIdComSucesso() {
+        Transacao transacaoSalva = new Transacao();
+        transacaoSalva.setId(1L);
+        transacaoSalva.setDescricao("Salário");
+        transacaoSalva.setValor(new BigDecimal("3000.00"));
+        transacaoSalva.setTipo(TipoTransacao.RECEITA);
+
+        when(repository.findById(1L)).thenReturn(Optional.of(transacaoSalva));
+
+        Transacao resultado = transacaoService.buscarPorId(1L);
+
+        assertNotNull(resultado);
+        assertEquals(1L, resultado.getId());
+        assertEquals("Salário", resultado.getDescricao());
+        verify(repository, times(1)).findById(1L);
+    }
+
+    @Test
+    void deveLancarExcecaoQuandoTransacaoNaoEncontrada() {
+        when(repository.findById(99L)).thenReturn(Optional.empty());
+
+        EntityNotFoundException excecao = assertThrows(EntityNotFoundException.class, () -> {
+            transacaoService.buscarPorId(99L);
+        });
+
+        assertEquals("Transação não encontrada", excecao.getMessage());
+        verify(repository, times(1)).findById(99L);
     }
 }
