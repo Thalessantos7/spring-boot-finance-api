@@ -2,6 +2,8 @@
 
 Uma API RESTful desenvolvida em Java com Spring Boot para gestão de finanças pessoais. Este projeto foi criado com o foco em aplicar boas práticas de desenvolvimento backend, modelagem de banco de dados relacional e arquitetura de software em camadas.
 
+---
+
 ## 🚀 Tecnologias e Ferramentas
 
 * **Java 21**
@@ -13,6 +15,9 @@ Uma API RESTful desenvolvida em Java com Spring Boot para gestão de finanças p
 * **Lombok** (Redução de código boilerplate)
 * **Maven** (Gerenciamento de dependências)
 * **Postman** (Testes de API)
+* **Swagger/OpenAPI (Springdoc)** (Documentação interativa da API)
+
+---
 
 ## 📂 Estrutura do Projeto
 
@@ -29,6 +34,8 @@ src/main/java/com/thales/gestor_financas
 └── security/           # Configurações de segurança, filtros JWT e serviços de token
 ```
 
+---
+
 ## ⚙️ Funcionalidades
 
 **Implementadas:**
@@ -40,6 +47,10 @@ src/main/java/com/thales/gestor_financas
 * [x] **Gestão de Transações:** Registo de receitas e despesas, listagem, busca por ID e exclusão.
 * [x] **Resumo Financeiro:** Cálculo dinâmico do saldo total (Receitas - Despesas) através do endpoint `/api/transacoes/resumo`.
 * [x] **Testes Automatizados:** Cobertura de testes unitários para regras de negócio (camada de Service) utilizando JUnit e Mockito.
+* [x] **Tratamento Global de Exceções:** Interceptação de erros centralizada com @RestControllerAdvice, devolvendo respostas JSON padronizadas e amigáveis (ex: Erros 404 e 400).
+* [x] **Documentação Interativa:** Interface web gerada com Swagger/OpenAPI 3, com suporte a tokens JWT, permitindo a exploração e teste dos endpoints diretamente no browser.
+
+---
 
 ## 🛠️ Como rodar o projeto localmente
 
@@ -79,6 +90,8 @@ src/main/java/com/thales/gestor_financas
 
 A API estará disponível em `http://localhost:8080/api/transacoes`.
 
+---
+
 ## 📌 Endpoints Principais
 
 | Método | Rota | Descrição |
@@ -92,6 +105,13 @@ A API estará disponível em `http://localhost:8080/api/transacoes`.
 | `POST` | `/api/usuarios/login` | Efetua login e devolve o Token JWT |
 | `POST` | `/api/categorias` | Cria uma nova categoria |
 | `GET` | `/api/usuarios/usuario/{id}` | Lista categorias de um usuário |
+
+---
+
+## 📖 Documentação da API (Swagger)
+A API possui documentação interativa gerada automaticamente. Com a aplicação rodando localmente, pode acessar a interface gráfica do Swagger para explorar os modelos de dados e testar as rotas (não esqueça de fazer o login e colar o token no botão "Authorize"):
+
+🔗 Acesse: http://localhost:8080/swagger-ui/index.html
 
 ---
 
